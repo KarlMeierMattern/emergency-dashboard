@@ -1,9 +1,9 @@
 // app/EmergencyDashboard.tsx
-import EmergencyTile from "@/components/EmergencyTile";
-import { View, Text } from "react-native";
+import EmergencyTile from "../../screens/EmergencyTile";
+import { View, Text, ScrollView } from "react-native";
 
 const emergencyTiles = [
-  { name: "911", phoneNumber: "911" },
+  { name: "test", phoneNumber: "911" },
   { name: "Beans", phoneNumber: "0609464129" },
   { name: "Police", phoneNumber: "10111" },
   { name: "Ambulance", phoneNumber: "10177" },
@@ -15,8 +15,8 @@ const emergencyTiles = [
 
 export default function EmergencyDashboard() {
   return (
-    <View className="flex-1 items-center justify-center bg-[#f9f0dc] p-4">
-      <Text className="mb-6 mt-10 text-2xl font-bold text-[#803920]">
+    <ScrollView>
+      <Text className="text-2xl mt-20 mb-8 font-bold text-center text-[#803920]">
         Emergency Dashboard
       </Text>
       <View className="w-full max-w-[500px] flex-row flex-wrap justify-between">
@@ -28,6 +28,6 @@ export default function EmergencyDashboard() {
           />
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 }

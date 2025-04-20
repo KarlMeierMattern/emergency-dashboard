@@ -20,7 +20,7 @@ export default function EmergencyTile({
 
   return (
     <TouchableOpacity
-      className="m-2 flex h-44 w-0.5 flex-row items-center justify-center rounded-3xl bg-[#d6832a]"
+      className="m-2 flex h-36 w-0.5 flex-row items-center justify-center rounded-3xl bg-[#d6832a]"
       style={{ minWidth: "45%" }}
       onPress={handlePress}
     >
