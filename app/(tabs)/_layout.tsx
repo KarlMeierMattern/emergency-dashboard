@@ -1,6 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
+import { View, Text } from "react-native";
 import EmergencyDashboard from "./index";
 import Settings from "./settings";
 
@@ -12,10 +13,10 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "#c2c2c2",
+          backgroundColor: "#27272a",
           position: "absolute",
         },
-        tabBarActiveTintColor: "#585858",
+        tabBarActiveTintColor: "#ffffff",
         tabBarInactiveTintColor: "#818181",
         tabBarLabelStyle: {
           fontFamily: "SpaceMono",
@@ -28,9 +29,14 @@ export default function TabLayout() {
         name="dashboard"
         component={EmergencyDashboard}
         options={{
-          tabBarLabel: "dashboard",
+          tabBarLabel: "",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="dashboard" size={24} color={color} />
+            <View className="items-center w-16 mt-4">
+              <MaterialIcons name="dashboard" size={24} color={color} />
+              <Text className="text-xs text-white mt-1" numberOfLines={1}>
+                dashboard
+              </Text>
+            </View>
           ),
         }}
       />
@@ -38,9 +44,14 @@ export default function TabLayout() {
         name="settings"
         component={Settings}
         options={{
-          tabBarLabel: "settings",
+          tabBarLabel: "",
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="settings" size={24} color={color} />
+            <View className="items-center w-16 mt-4">
+              <MaterialIcons name="settings" size={24} color={color} />
+              <Text className="text-xs text-white mt-1" numberOfLines={1}>
+                settings
+              </Text>
+            </View>
           ),
         }}
       />

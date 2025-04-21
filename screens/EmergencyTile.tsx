@@ -26,15 +26,15 @@ export default function EmergencyTile({
 
   return (
     <TouchableOpacity
-      className="flex h-36 w-0.5 mb-2 flex-col justify-center items-center rounded-3xl bg-[#6a6a6a]"
+      className="flex h-36 w-0.5 mb-2 flex-col justify-center items-center bg-[#ffffff] rounded-md border border-zinc-200 shadow-sm"
       style={{ minWidth: "45%" }}
       onPress={handlePress}
     >
-      <Text className="font-mono tracking-widest lowercase text-center text-xl font-semibold text-[#fcf7ee]">
+      <Text className="font-mono lowercase text-center text-lg font-semibold text-[#27272a]">
         {name}
       </Text>
       <View className="mt-2">
-        <Ionicons name={iconName} size={16} color="#fcf7ee" />
+        <Ionicons name={iconName} size={16} color="#27272a" />
       </View>
     </TouchableOpacity>
   );

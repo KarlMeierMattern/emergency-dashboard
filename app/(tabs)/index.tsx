@@ -3,11 +3,11 @@ import { View, ScrollView } from "react-native";
 import { useContacts } from "../../context/ContactsContext";
 
 export default function EmergencyDashboard() {
-  const { contacts } = useContacts();
+  const { contacts } = useContacts(); // destructure contacts from useContacts hook
 
   return (
     <ScrollView
-      className="flex-1 bg-[#e3e3e3]"
+      className="flex-1 bg-[#FAFAFA]"
       contentContainerStyle={{
         flexGrow: 1,
         justifyContent: "center",

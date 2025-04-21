@@ -94,10 +94,10 @@ export const ContactsProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const deleteContact = (id: string) => {
-    if (contacts.length <= 4) {
-      alert("Minimum of 4 contacts required");
-      return;
-    }
+    // if (contacts.length <= 4) {
+    //   alert("Minimum of 4 contacts required");
+    //   return;
+    // }
 
     setContacts((prev) => prev.filter((contact) => contact.id !== id));
   };
@@ -118,3 +118,8 @@ export const useContacts = () => {
   }
   return context;
 };
+
+// useContext takes a context object (created by createContext) as its parameter
+// Returns the current context, which comes from the nearest Provider above the component
+// The value is whatever was passed to the value prop of the nearest ContactsContext.Provider
+// If there's no Provider above, it returns undefined (which is why you have the error check)

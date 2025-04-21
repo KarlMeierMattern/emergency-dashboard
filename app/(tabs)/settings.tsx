@@ -33,7 +33,7 @@ const iconOptions: IconName[] = [
 
 const Settings = () => {
   const { contacts, updateContact, deleteContact, addContact, loading } =
-    useContacts();
+    useContacts(); // destructure contacts, updateContact, deleteContact, addContact, and loading from useContacts hook
   const [modalVisible, setModalVisible] = useState(false);
   const [editingContact, setEditingContact] = useState<Contact | null>(null);
   const [newContact, setNewContact] = useState<Omit<Contact, "id"> | null>(
@@ -106,12 +106,15 @@ const Settings = () => {
   };
 
   const openIconSelector = () => {
-    setIconModalVisible(true);
+    setModalVisible(false); // Hide the parent modal
+    setTimeout(() => setIconModalVisible(true), 10); // Open the icon modal after a short delay
+    // setIconModalVisible(true);
   };
 
   const selectIcon = (iconName: string) => {
     setSelectedIcon(iconName as IconName);
     setIconModalVisible(false);
+    setTimeout(() => setModalVisible(true), 10); // Reopen the main modal
   };
 
   if (loading) {
@@ -126,25 +129,25 @@ const Settings = () => {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
+    <SafeAreaView className="flex-1 bg-[#FAFAFA]">
       <FlatList
         className="mt-4"
         data={contacts}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View className="flex-row justify-between items-center bg-white p-4 my-1 mx-2 rounded-lg shadow">
+          <View className="flex-row justify-between items-center bg-[#ffffff] p-4 my-1 mx-2 rounded-md border border-zinc-200 shadow-sm">
             <View className="flex-row items-center flex-1">
               <Ionicons
                 name={item.iconName}
                 size={24}
-                color="#585858"
+                color="#27272a"
                 className="mr-4"
               />
               <View>
-                <Text className="text-base font-bold font-mono tracking-wide lowercase">
+                <Text className="text-base font-bold font-mono tracking-wide lowercase text-[#27272a]">
                   {item.name}
                 </Text>
-                <Text className="text-sm text-gray-500 mt-0.5 font-mono tracking-wide lowercase">
+                <Text className="text-sm text-[#27272a] mt-0.5 font-mono tracking-wide lowercase">
                   {item.phoneNumber ? item.phoneNumber : "No number set"}
                 </Text>
               </View>
@@ -154,7 +157,7 @@ const Settings = () => {
                 onPress={() => handleEdit(item)}
                 className="p-2 mr-1"
               >
-                <Ionicons name="pencil" size={20} color="#585858" />
+                <Ionicons name="pencil" size={20} color="#27272a" />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => handleDelete(item.id)}
@@ -168,7 +171,7 @@ const Settings = () => {
         ListFooterComponent={
           contacts.length < 8 ? (
             <TouchableOpacity
-              className="flex-row items-center justify-center bg-[#585858] p-4 m-2 rounded-lg shadow"
+              className="flex-row items-center justify-center bg-[#27272a] p-4 m-2 rounded-lg shadow"
               onPress={handleAdd}
             >
               <Ionicons name="add-circle" size={24} color="white" />
@@ -181,7 +184,7 @@ const Settings = () => {
       />
 
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
@@ -255,7 +258,7 @@ const Settings = () => {
       </Modal>
 
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={iconModalVisible}
         onRequestClose={() => setIconModalVisible(false)}
@@ -273,7 +276,7 @@ const Settings = () => {
                     className="w-[30%] items-center p-2.5 m-1 border border-gray-200 rounded-lg"
                     onPress={() => selectIcon(iconName)}
                   >
-                    <Ionicons name={iconName} size={30} color="#007AFF" />
+                    <Ionicons name={iconName} size={30} color="#27272a" />
                     <Text className="mt-1 text-xs">{iconName}</Text>
                   </TouchableOpacity>
                 ))}
@@ -281,9 +284,12 @@ const Settings = () => {
             </ScrollView>
             <TouchableOpacity
               className="bg-gray-200 p-3 rounded-lg mt-2.5 items-center w-full"
-              onPress={() => setIconModalVisible(false)}
+              onPress={() => {
+                setIconModalVisible(false);
+                setModalVisible(true);
+              }}
             >
-              <Text className="text-gray-800 font-medium">Cancel</Text>
+              <Text className="text-gray-800 font-medium">cancel</Text>
             </TouchableOpacity>
           </View>
         </View>
