@@ -1,51 +1,49 @@
-import { Tabs } from "expo-router";
 import React from "react";
-import { Platform, View } from "react-native";
-
-import { HapticTab } from "@/components/HapticTab";
-import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
+import EmergencyDashboard from "./index";
+import Settings from "./settings";
+
+const Tab = createBottomTabNavigator();
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <View className="flex-1">
-      <Tabs
-        screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-          headerShown: false,
-          tabBarButton: HapticTab,
-          tabBarBackground: TabBarBackground,
-          tabBarStyle: Platform.select({
-            ios: {
-              position: "absolute",
-            },
-            default: {},
-          }),
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "#c2c2c2",
+          position: "absolute",
+        },
+        tabBarActiveTintColor: "#585858",
+        tabBarInactiveTintColor: "#818181",
+        tabBarLabelStyle: {
+          fontFamily: "SpaceMono",
+          fontWeight: 300,
+          fontSize: 10,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="dashboard"
+        component={EmergencyDashboard}
+        options={{
+          tabBarLabel: "dashboard",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="dashboard" size={24} color={color} />
+          ),
         }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: "Dashboard",
-            tabBarIcon: ({ color }) => (
-              <MaterialIcons name="dashboard" size={28} color={color} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="settings"
-          options={{
-            title: "Settings",
-            tabBarIcon: ({ color }) => (
-              <MaterialIcons name="settings" size={28} color={color} />
-            ),
-          }}
-        />
-      </Tabs>
-    </View>
+      />
+      <Tab.Screen
+        name="settings"
+        component={Settings}
+        options={{
+          tabBarLabel: "settings",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="settings" size={24} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }

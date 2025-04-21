@@ -4,6 +4,7 @@ module.exports = {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}", // for routing files
     "./components/**/*.{js,jsx,ts,tsx}", // if you have a components folder
+    "./screens/**/*.{js,jsx,ts,tsx}", // if you have a screens folder
     "./*.{js,jsx,ts,tsx}", // for root-level files like App.tsx
   ],
   presets: [require("nativewind/preset")],

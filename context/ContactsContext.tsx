@@ -1,14 +1,15 @@
-"use client";
-
 import type React from "react";
 import { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons } from "@expo/vector-icons";
+
+type IconName = keyof typeof Ionicons.glyphMap;
 
 export type Contact = {
   id: string;
   name: string;
   phoneNumber: string;
-  iconName: string;
+  iconName: IconName;
 };
 
 type ContactsContextType = {
@@ -20,12 +21,12 @@ type ContactsContextType = {
 };
 
 const defaultContacts: Contact[] = [
-  { id: "1", name: "Police", phoneNumber: "911", iconName: "shield" },
-  { id: "2", name: "Fire", phoneNumber: "911", iconName: "flame" },
-  { id: "3", name: "Ambulance", phoneNumber: "911", iconName: "medkit" },
-  { id: "4", name: "Family", phoneNumber: "", iconName: "people" },
-  { id: "5", name: "Doctor", phoneNumber: "", iconName: "medical" },
-  { id: "6", name: "Neighbor", phoneNumber: "", iconName: "home" },
+  { id: "1", name: "police", phoneNumber: "911", iconName: "shield" },
+  { id: "2", name: "fire", phoneNumber: "911", iconName: "flame" },
+  { id: "3", name: "ambulance", phoneNumber: "911", iconName: "medkit" },
+  { id: "4", name: "family", phoneNumber: "", iconName: "people" },
+  { id: "5", name: "doctor", phoneNumber: "", iconName: "medical" },
+  { id: "6", name: "neighbor", phoneNumber: "", iconName: "home" },
 ];
 
 const ContactsContext = createContext<ContactsContextType | undefined>(
